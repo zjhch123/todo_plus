@@ -1,0 +1,15 @@
+.c-btn {
+  border: 1px solid white;
+  outline: none;
+  font-size: .28rem;
+  color: white;
+  appearance: none;
+  background-color: transparent;
+  padding: .1rem .3rem;
+  text-align: center;
+
+  &.f-touched {
+    background: white;
+    color: black;
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "root": true,
+  "extends": [
+    "react-app",
+    "eslint:recommended",
+    "plugin:react/recommended",
+  ],
+  "plugins": [
+    "react",
+  ],
+  "env": {
+    "browser": true,
+  },
+  "parserOptions": {
+    "ecmaVersion": 2020,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true,
+    },
+  },
+  "rules": {
+    "comma-dangle": ["error", "always-multiline"],
+    "no-new": "off",
+    "camelcase": "off",
+    "semi": ["error", "always"],
+    "node/no-unpublished-require": "off",
+    "react/prop-types": 2,
+    "react/require-default-props": 2,
+  }
+}

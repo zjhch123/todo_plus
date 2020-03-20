@@ -1,28 +1,28 @@
-import { useState, useEffect, useCallback } from 'react'
-import axios from 'axios'
+import { useState, useEffect, useCallback } from 'react';
+import axios from 'axios';
 
 export function useAPI(payloadGenerator) {
   const [status, setStatus] = useState({
     response: null,
     isLoading: false,
     isError: false,
-  })
-  const [cancelToken, setCancelToken] = useState(null)
+  });
+  const [cancelToken, setCancelToken] = useState(null);
 
   useEffect(() => {
     return () => {
-      cancelToken && cancelToken.cancel && cancelToken.cancel()
-    }
-  }, [cancelToken])
+      cancelToken && cancelToken.cancel && cancelToken.cancel();
+    };
+  }, [cancelToken]);
 
   const execute = useCallback((...args) => {
     setStatus({
       isLoading: true,
       isError: false,
       response: null,
-    })
+    });
 
-    const source = axios.CancelToken.source()
+    const source = axios.CancelToken.source();
 
     const fetchInstance = axios({
       ...payloadGenerator(...args),
@@ -30,33 +30,33 @@ export function useAPI(payloadGenerator) {
     })
       .then(response => {
         if (response.status !== 200) {
-          throw new Error(response.status)
+          throw new Error(response.status);
         }
 
-        return response
+        return response;
       }).then(response => {
         setStatus({
           isLoading: false,
           isError: false,
           response: response.data,
-        })
+        });
       }).catch(e => {
         if (axios.isCancel(e)) {
-          return
+          return;
         }
 
         setStatus({
           isLoading: false,
           isError: true,
           response: null,
-        })
-        throw e
-      })
+        });
+        throw e;
+      });
     
     
-    setCancelToken(source)
-    return fetchInstance
-  }, [payloadGenerator])
+    setCancelToken(source);
+    return fetchInstance;
+  }, [payloadGenerator]);
 
   return [status.response, execute, status.isLoading, status.isError];
 }

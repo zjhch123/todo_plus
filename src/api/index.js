@@ -3,4 +3,4 @@ export const get = (params) => ({
   method: 'get',
   responseType: 'json',
   params,
-})
+});
