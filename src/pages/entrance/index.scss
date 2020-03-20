@@ -1,0 +1,16 @@
+.p-entrance {
+  position: relative;
+  height: 100vh;
+  .u-filter {
+    position: absolute;
+    z-index: 2;
+    pointer-events: none;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('../../asset/images/filter.png');
+    background-size: 7.4rem 12rem;
+    background-repeat: repeat;
+  }
+}

@@ -3,17 +3,34 @@ import classnames from 'classnames';
 import PropTypes from 'prop-types';
 
 import { Button } from '../../components/button';
+import { IsAndroid } from '../../constants';
 
 import './index.scss';
+
+const playMedia = (pre = false) => {
+  const elementId = IsAndroid ? 'i_music' : 'i_video';
+
+  // #HACK
+  document.getElementById(elementId).play();
+  pre && document.getElementById(elementId).pause();
+};
 
 export function Welcome({
   moveForward,
 }) {
   const [isLoading, setIsLoading] = useState(false);
 
+  const onClickHandler = () => {
+    setIsLoading(true);
+
+    // #HACK
+    playMedia(true);
+  };
+
   const goNextAfterGIFFinish = () => {
     setTimeout(() => {
       moveForward();
+      playMedia();
     }, 3200);
   };
 
@@ -26,7 +43,7 @@ export function Welcome({
             src={require('../../asset/images/text.svg')}
             alt="welcome text"
           />
-          <Button className="btn" onClick={() => setIsLoading(true)}>出发</Button>
+          <Button className="btn" onClick={onClickHandler}>出发</Button>
         </div>
         {
           isLoading && <img className="u-loading" src={require('../../asset/images/logo.gif')} alt="loading" onLoad={goNextAfterGIFFinish} />

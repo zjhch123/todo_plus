@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { Welcome } from '../welcome';
+import { Entrance } from '../entrance';
+import { Steps } from '../../constants';
 
 import './app.css';
-import { Steps } from '../../constants';
 
 export function App() {
   const [step, setStep] = useState(Steps.Welcome);
@@ -15,8 +16,8 @@ export function App() {
     switch (step) {
       case Steps.Welcome:
         return <Welcome moveForward={moveForward} />;
-      case Steps.Index:
-        return <div>123</div>;
+      case Steps.Entrance:
+        return <Entrance moveForward={moveForward} />;
       default:
         return <Welcome moveForward={moveForward} />;
     }
