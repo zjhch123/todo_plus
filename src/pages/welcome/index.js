@@ -3,16 +3,14 @@ import classnames from 'classnames';
 import PropTypes from 'prop-types';
 
 import { Button } from '../../components/button';
-import { IsAndroid } from '../../constants';
+import { MediaElementId } from '../../constants';
 
 import './index.scss';
 
 const playMedia = (pre = false) => {
-  const elementId = IsAndroid ? 'i_music' : 'i_video';
-
   // #HACK
-  document.getElementById(elementId).play();
-  pre && document.getElementById(elementId).pause();
+  document.getElementById(MediaElementId).play();
+  pre && document.getElementById(MediaElementId).pause();
 };
 
 export function Welcome({

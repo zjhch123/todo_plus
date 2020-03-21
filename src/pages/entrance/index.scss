@@ -13,4 +13,10 @@
     background-size: 7.4rem 12rem;
     background-repeat: repeat;
   }
+  .u-media-controller {
+    position: absolute;
+    right: .4rem;
+    top: .4rem;
+    z-index: 3;
+  }
 }

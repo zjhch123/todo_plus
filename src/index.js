@@ -1,18 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { App } from './pages/app';
-import { IsAndroid } from './constants';
+import { IsAndroid, MediaElementId } from './constants';
 import * as serviceWorker from './serviceWorker';
 
 if (module.hot) {
   module.hot.accept();
 }
 
-if (IsAndroid) {
-  document.querySelector('#i_music').setAttribute('src', require('./asset/music/music.mp3'));  
-} else {
-  document.querySelector('#i_video').setAttribute('src', require('./asset/video/video.mp4'));
-}
+const media = IsAndroid
+  ? require('./asset/music/music.mp3')
+  : require('./asset/video/video.mp4');
+
+document.getElementById(MediaElementId).setAttribute('src', media);
 
 ReactDOM.render(<App />, window.document.getElementById('root'));
 serviceWorker.unregister();

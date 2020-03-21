@@ -4,3 +4,5 @@ export const Steps = Object.freeze({
 });
 
 export const IsAndroid = navigator.userAgent.toLowerCase().split("android").length > 1;
+
+export const MediaElementId = IsAndroid ? 'i_music' : 'i_video';

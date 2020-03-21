@@ -1,0 +1,33 @@
+.c-media-controller {
+  @keyframes playing {
+    from {
+      transform: rotate(0)
+    }
+    to {
+      transform: rotate(360deg)
+    }
+  }
+  border: none;
+  width: .64rem;
+  height: .64rem;
+  padding: 0;
+  border-radius: 50%;
+  animation: playing 5s linear infinite;
+  background-color: transparent;
+  img {
+    background: white;
+    border-radius: 50%;
+    width: .64rem;
+    height: .64rem;
+    display: block;
+  }
+  &.f-touched {
+    background-color: transparent;
+    img {
+      transform: scale(.9);
+    }
+  }
+  &.f-muted {
+    animation: none;
+  }
+}
