@@ -13,21 +13,43 @@
     background-size: 7.4rem 12rem;
     background-repeat: repeat;
   }
+  .u-slider {
+    position: absolute;
+    z-index: 1;
+    pointer-events: none;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 7.5rem;
+    height: 100vh;
+    overflow: hidden;
+    .resource-0 {
+      transform-origin: 80% 15%;
+    }
+    .resource-1 {
+      transform-origin: right center;
+    }
+    .resource-3 {
+      transform-origin: left center;
+    }
+  }
   .m-container {
     position: relative;
-    z-index: 2;
+    z-index: 3;
     width: 100%;
     height: 100%;
   }
   .u-media-controller {
     position: absolute;
-    right: .4rem;
-    top: .4rem;
+    right: .36rem;
+    top: .36rem;
   }
   .u-typing {
     position: absolute;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
+    font-weight: lighter;
   }
 }
