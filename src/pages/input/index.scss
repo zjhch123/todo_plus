@@ -1,0 +1,185 @@
+.p-input {
+  @keyframes inputFadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-1rem);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  @keyframes inputFadeInLight {
+    from {
+      opacity: 0;
+      transform: translateY(-.5rem);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  position: relative;
+  width: 7.5rem;
+  min-height: 100vh;
+  background: #39363f;
+  .m-slider {
+    transition: transform .6s;
+    width: 6.46rem;
+    margin: auto;
+  }
+  .m-intro {
+    padding-top: .32rem;
+    box-sizing: border-box;
+    transition: opacity .6s;
+    .m-content {
+      font-size: .67rem;
+      color: white;
+      line-height: 1rem;
+      font-weight: 300;
+      .color-green {
+        color: #05fbbc;
+      }
+    }
+    &.f-hide {
+      opacity: 0;
+    }
+  }
+  .m-input {
+    padding-top: .5rem;
+    .u-section {
+      border-radius: .08rem;
+      text-align: left;
+      position: relative;
+      outline: none;
+      font-size: .36rem;
+      font-weight: 300;
+      transition: border-color .6s, height .6s, background-color .6s;
+      overflow: hidden;
+      .intro {
+        display: none;
+      }
+      .f-stage1-intro {
+        color: rgb(156, 156, 156);
+      }
+      .f-stage2-intro {
+        font-size: .4rem;
+      }
+      .input-list {
+        display: none;
+        flex-direction: column;
+        margin-top: .16rem;
+        animation: inputFadeIn .5s .6s;
+        animation-fill-mode: both;
+        .input {
+          position: relative;
+          padding-left: .4rem;
+          &.f-focus:before {
+            background-color: white;
+          }
+          &:before {
+            content: '';
+            width: .1rem;
+            height: .1rem;
+            border-radius: 50%;
+            background-color: rgb(156, 156, 156);
+            position: absolute;
+            top: 50%;
+            left: 0;
+            transform: translateY(-50%);
+            font-size: 1rem;
+          }
+        }
+        input {
+          width: 100%;
+          height: .57rem;
+          line-height: .57rem;
+          color: white;
+          position: relative;
+          background: transparent;
+          font-size: .36rem;
+        }
+      }
+      &.f-stage1 {
+        background-color: white;
+        border: 1px solid white;
+        height: 1.38rem;
+        line-height: 1.38rem;
+        padding-left: .8rem;
+        .f-stage1-intro {
+          display: block;
+        }
+        &:before {
+          content: '';
+          width: .1rem;
+          height: .1rem;
+          border-radius: 50%;
+          background-color: rgb(156, 156, 156);
+          position: absolute;
+          top: 50%;
+          left: .43rem;
+          transform: translateY(-50%);
+          font-size: 1rem;
+        }
+      }
+      &.f-stage2 {
+        background-color: transparent;
+        border: 1px solid #05fbbc;
+        color: #05fbbc;
+        height: 2.79rem;
+        padding: .16rem .25rem;
+        box-sizing: border-box;
+        .f-stage2-intro {
+          display: block;
+        }
+        .input-list {
+          display: flex;
+        }
+      }
+    }
+  }
+  .m-row {
+    line-height: 1.41;
+    font-size: .32rem;
+    margin: .3rem auto;
+    text-align: right;
+    opacity: 0;
+    transform: translateY(-.2rem);
+    pointer-events: none;
+    transition: all .4s;
+    &.f-show {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+    .u-submit {
+      display: inline-block;
+      width: 2.3rem;
+      border-color: #05fbbc;
+      border-radius: .08rem;
+      &.f-touched {
+        background-color: #05fbbc;
+        color: #39363f;
+      }
+    }
+  }
+  .u-image-drop {
+    display: none;
+    position: absolute;
+    top: 3.8rem;
+    bottom: .5rem;
+    overflow: hidden;
+    width: 6.46rem;
+    left: 50%;
+    margin-left: -3.23rem;
+    animation: inputFadeIn .5s .6s;
+    animation-fill-mode: both;
+    transition: top .5s;
+    &.f-show {
+      display: block;
+    }
+    &.f-move-down {
+      top: 4.5rem;
+    }
+  }
+}

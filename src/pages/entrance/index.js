@@ -2,12 +2,13 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { MediaController } from '../../components/media-controller';
 
-import './index.scss';
 import { Typing } from '../../components/typing';
 import { Slider } from '../../components/slider';
-import { TodoContents, MediaElementId, IsAndroid } from '../../constants';
+import { Button } from '../../components/button';
+import { TodoContents, MediaElementId, IsAndroid, AndroidSliderResources } from '../../constants';
 import { debounce } from '../../utils/debounce';
 
+import './index.scss';
 
 export function Entrance({
   moveForward,
@@ -19,14 +20,16 @@ export function Entrance({
     <Slider
       key={typingKey}
       className="u-slider"
-      resources={[
-        require('../../asset/images/a_1.png'),
-        require('../../asset/images/a_2.png'),
-        require('../../asset/images/a_3.png'),
-        require('../../asset/images/a_4.png'),
-      ]}
+      resources={AndroidSliderResources}
     />
   );
+
+  const goNext = () => {
+    const mediaElement = document.getElementById(MediaElementId);
+    mediaElement.pause();
+    mediaElement.currentTime = 0;
+    moveForward();
+  };
 
   useEffect(() => {
     const addTypingKey = (e) => {
@@ -50,9 +53,19 @@ export function Entrance({
       }
       <div className="m-container">
         <MediaController className="u-media-controller" />
+        <div className="u-title">我要</div>
         <div className="u-typing">
-          <Typing key={typingKey} contents={TodoContents} />
+          <Typing
+            key={typingKey}
+            contents={TodoContents}
+          />
         </div>
+        <Button
+          className="u-btn"
+          onClick={goNext}
+        >
+          填写我的<span className="english">2020</span>赌约
+        </Button>
       </div>
     </div>
   );
