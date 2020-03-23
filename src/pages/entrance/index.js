@@ -64,7 +64,7 @@ export function Entrance({
           className="u-btn"
           onClick={goNext}
         >
-          填写我的<span className="english">2020</span>赌约
+          填写我的&nbsp;<span className="english">2020</span>&nbsp;赌约
         </Button>
       </div>
     </div>
