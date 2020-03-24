@@ -1,0 +1,77 @@
+.p-upload {
+  @keyframes shake {
+    from {
+      transform: translateY(0);
+    }
+    to {
+      transform: translateY(.2rem);
+    }
+  }
+  width: 100%;
+  height: 100vh;
+  background: #39363f;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  .u-share {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    background: rgba(0,0,0,.3);
+    z-index: 10;
+    img {
+      position: absolute;
+      right: .3rem;
+      top: .3rem;
+      width: .5rem;
+      animation: shake .3s linear infinite alternate-reverse;
+    }
+  }
+  .u-bg {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+    img {
+      display: block;
+      width: auto;
+      height: 110%;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      filter: blur(12px);
+    }
+  }
+  .m-card {
+    position: relative;
+    z-index: 2;
+  }
+  .m-row {
+    position: relative;
+    z-index: 2;
+    padding: .4rem 0 0;
+    text-align: center;
+    .u-btn {
+      width: 1.2rem;
+      height: .4rem;
+      line-height: .4rem;
+      box-sizing: content-box;
+      font-size: .3rem;
+      font-weight: 300;
+      background-color: black;
+      margin: 0 .2rem;
+      &.f-touched {
+        background: white;
+        color: black;
+      }
+    }
+  }
+}

@@ -7,9 +7,12 @@
   background-color: transparent;
   padding: .1rem .3rem;
   text-align: center;
-
+  font-family: inherit;
   &.f-touched {
     background: white;
     color: black;
+  }
+  &:focus {
+    outline: 1px currentColor dashed;
   }
 }

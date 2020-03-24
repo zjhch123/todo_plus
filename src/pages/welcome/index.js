@@ -7,21 +7,19 @@ import { MediaElementId } from '../../constants';
 
 import './index.scss';
 
-const playMedia = (pre = false) => {
-  // #HACK
-  document.getElementById(MediaElementId).play();
-  pre && document.getElementById(MediaElementId).pause();
-};
-
 export function Welcome({
   moveForward,
 }) {
   const [isLoading, setIsLoading] = useState(false);
 
+  const playMedia = (pre = false) => {
+    // #HACK
+    document.getElementById(MediaElementId).play();
+    pre && document.getElementById(MediaElementId).pause();
+  };
+
   const onClickHandler = () => {
     setIsLoading(true);
-
-    // #HACK
     playMedia(true);
   };
 

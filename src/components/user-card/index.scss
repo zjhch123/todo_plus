@@ -1,0 +1,140 @@
+.c-card {
+  width: 5.54rem;
+  .m-upload {
+    width: 5.54rem;
+    height: 4.42rem;
+    mask: url('../../asset/images/section1.png');
+    mask-repeat: no-repeat;
+    mask-size: 100% 100%;
+    position: relative;
+    display: block;
+    overflow: hidden;
+    .u-upload-bg {
+      display: block;
+      width: 100%;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      background: #39363f;
+    }
+    .u-upload-control {
+      display: none;
+    }
+    .u-upload-trigger {
+      position: absolute;
+      left: 0;
+      top: 0;
+      border: none;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      font-size: .26rem;
+      .trigger {
+        width: .8rem;
+        display: block;
+      }
+      .content {
+        font-weight: 300;
+        margin-top: .1rem;
+      }
+      &.f-touched {
+        color: white;
+        .trigger,
+        .content {
+          transform: scale(.9);
+        }
+      }
+      &:focus {
+        color: white;
+        .trigger,
+        .content {
+          transform: scale(.9);
+        }
+        .content {
+          outline: white 1px dashed;
+        }
+      }
+    }
+  }
+  .m-user-info {
+    width: 100%;
+    height: 3.1rem;
+    mask: url('../../asset/images/section2.png');
+    mask-repeat: no-repeat;
+    mask-size: 100% 100%;
+    background: white;
+    padding: .22rem .32rem 0;
+    box-sizing: border-box;
+    .u-title {
+      font-size: .34rem;
+      font-weight: 300;
+    }
+    .u-todo {
+      font-size: .26rem;
+      font-weight: 200;
+      margin-top: .1rem;
+      p {
+        padding-left: .35rem;
+        position: relative;
+        line-height: 1.51;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        &:before {
+          content: '';
+          position: absolute;
+          left: 0;
+          top: 50%;
+          transform: translateY(-50%);
+          width: .08rem;
+          height: .08rem;
+          border-radius: 50%;
+          background-color: #000;
+        }
+      }
+    }
+    .u-info {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: .86rem;
+      display: flex;
+      align-items: center;
+      padding-left: .32rem;
+      line-height: 1.21;
+      border-top: 0.5px dashed rgba(156, 156, 156, 0.5); 
+      img {
+        width: .55rem;
+        height: .55rem;
+        display: block;
+        border-radius: 50%;
+        margin-right: .2rem;
+      }
+      .nickname {
+        font-size: .28rem;
+        font-weight: 300;
+      }
+      .time {
+        margin-top: .04rem;
+        font-size: .2rem;
+        color: #525252;
+      }
+      .visit-count {
+        position: absolute;
+        font-size: .2rem;
+        right: .32rem;
+        text-align: right;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #525252;
+      }
+    }
+  }
+}

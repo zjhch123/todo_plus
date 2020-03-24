@@ -1,0 +1,55 @@
+.c-typing {
+  color: white;
+  position: relative;
+  @keyframes show {
+    from {
+      width: 0;
+    }
+    to {
+      width: 100%;
+    }
+  }
+  @keyframes fadeInOut {
+    from, to {
+      opacity: 0;
+    }
+    50% {
+      opacity: 1;
+    }
+  }
+  @keyframes selected {
+    from {
+      background-color: transparent;
+      color: white;
+    }
+    to {
+      background-color: white;
+      color: #4894EC;
+    }
+  }
+  .content {
+    line-height: 1.41;
+    white-space: nowrap;
+    text-align: left;
+    color: white;
+    animation: selected 0s steps(1, end) forwards;
+    padding: 0 .06rem;
+    .word {
+      overflow: hidden;
+      display: block;
+      line-height: 1.41;
+      animation-name: show;
+      animation-fill-mode: forwards;
+    }
+    .caret {
+      position: absolute;
+      top: 50%;
+      margin-top: -.26rem;
+      height: .52rem;
+      box-shadow: .1rem 0 0 0 white;
+      animation-name: show, fadeInOut;
+      animation-fill-mode: forwards, none;
+      animation-iteration-count: 1, infinite;
+    }
+  }
+}
