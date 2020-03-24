@@ -2,7 +2,7 @@ export const Steps = Object.freeze({
   Welcome: 0,
   Entrance: 1,
   Input: 2,
-  Upload: 3,
+  Card: 3,
 });
 
 export const IsAndroid = navigator.userAgent.toLowerCase().split("android").length > 1;
@@ -31,3 +31,9 @@ export const ImageDropResources = [
   { path: require('../asset/images/img5.jpg'), content: '学着画一幅小画' },
   { path: require('../asset/images/img6.jpg'), content: '扬起裙摆<br />跳一曲弗拉门戈' },
 ];
+
+export const CardMode = Object.freeze({
+  Edit: 0,
+  Show: 1,
+  Share: 2,
+});

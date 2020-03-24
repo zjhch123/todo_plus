@@ -61,6 +61,16 @@
       }
       .f-stage1-intro {
         color: rgb(156, 156, 156);
+        width: 100%;
+        height: 100%;
+        border: none;
+        text-align: left;
+        font-size: .36rem;
+        padding: 0;
+        &:focus {
+          border: 1px black dashed;
+          box-sizing: border-box;
+        }
       }
       .f-stage2-intro {
         font-size: .4rem;

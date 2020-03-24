@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useLayoutEffect } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import _ from 'underscore';
@@ -21,6 +21,8 @@ export function Input({
   const [todoList, setTodoList] = useState(defaultTodoList === null ? ['', '', ''] : defaultTodoList);
   const [displaySubmit, setDisplaySubmit] = useState(false);
   const countDown = useCountDown(new Date(2020, 0, 1).getTime());
+
+  const todoCount = _.filter(todoList, (item) => item.trim().length > 0).length;
 
   const goToStage2 = () => setStage(2);
 
@@ -47,6 +49,16 @@ export function Input({
     setDisplaySubmit(stage === 2 && _.some(todoList, (item) => item.length > 0));
   }, [todoList, stage]);
 
+  useLayoutEffect(() => {
+    const timeoutId = setTimeout(() => {
+      if (todoList.length === 3 && _.every(todoList, (item) => item.trim().length > 0)) {
+        setStage(2);
+      }
+    }, 200);
+
+    return () => clearTimeout(timeoutId);
+  }, [todoList]);
+
   return (
     <div className="p-input">
       <div className="m-slider" style={{
@@ -68,8 +80,14 @@ export function Input({
               'f-stage1': stage === 1,
               'f-stage2': stage === 2,
             })}>
-            <span className="intro f-stage1-intro" onClick={goToStage2}>点击填写赌约</span>
-            <span className="intro f-stage2-intro"><span className="english-bold">2020</span>&nbsp;我要做三个新尝试</span>
+            <Button className="intro f-stage1-intro" onClick={goToStage2} role="button">点击填写赌约</Button>
+            <span className="intro f-stage2-intro">
+              <span className="english-bold">2020&nbsp;</span>
+              年我要做
+              <span className="english-bold">
+                &nbsp;{todoCount === 0 ? 'n' : todoCount}&nbsp;
+              </span>
+              个新尝试</span>
             <div className="input-list">
               {
                 todoList.map(renderInput)
@@ -78,7 +96,7 @@ export function Input({
           </div>
         </div>
         <div className={classnames('m-row', { 'f-show': displaySubmit })}>
-          <Button onClick={() => moveForward(todoList)} className="u-submit">确认</Button>
+          <Button onClick={() => displaySubmit && moveForward(todoList)} className="u-submit">确认</Button>
         </div>
       </div>
       <div className={classnames('u-image-drop', { 'f-show': stage === 2, 'f-move-down': displaySubmit })}>

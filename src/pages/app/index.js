@@ -2,28 +2,56 @@ import React, { useState } from 'react';
 import { Welcome } from '../welcome';
 import { Entrance } from '../entrance';
 import { Input } from '../input';
-import { Upload } from '../upload';
-import { Steps } from '../../constants';
+import { Card } from '../card';
+import { Steps, CardMode } from '../../constants';
 
 import './app.css';
 
 export function App() {
-  const [step, setStep] = useState(Steps.Upload);
-  // const [todoList, setTodoList] = useState(null);
-  const [todoList, setTodoList] = useState(['吃得多', '玩得多', '睡得多']);
-  // const [userInfo, setUserInfo] = useState(null);
-  const [userInfo, setUserInfo] = useState({
+  const [step, setStep] = useState(Steps.Input);
+
+  const [userInfo] = useState({
+    openid: '123456',
     nickname: '纸叠的世界',
     headimgurl: require('../../asset/images/temp.png'),
   });
+
+  const [todoInfo, setTodoInfo] = useState({
+    createdAt: null,
+    list: null,
+    image: {
+      file: null,
+      url: require('../../asset/images/bitmap.png'),
+    },
+    visitCount: 0,
+  });
+
+  const [cardMode, setCardMode] = useState(CardMode.Edit);
 
   const moveForward = () => {
     setStep(step + 1);
   };
 
-  const buildTodoListAndMoveForward = (data) => {
-    setTodoList(data);
+  const buildTodoListAndMoveForwardToCard = (data) => {
+    setTodoInfo({
+      ...todoInfo,
+      createdAt: Date.now(),
+      list: data,
+    });
     moveForward();
+  };
+
+  const buildTodoListAndFinish = (data) => {
+    setTodoInfo({
+      ...todoInfo,
+      image: data,
+    });
+    setCardMode(CardMode.Show);
+  };
+
+  const backToInput = () => {
+    setStep(Steps.Input);
+    setCardMode(CardMode.Edit);
   };
 
   const renderStep = () => {
@@ -33,9 +61,15 @@ export function App() {
       case Steps.Entrance:
         return <Entrance moveForward={moveForward} />;
       case Steps.Input:
-        return <Input defaultTodoList={todoList} moveForward={buildTodoListAndMoveForward} />;
-      case Steps.Upload:
-        return <Upload todoList={todoList} userInfo={userInfo} moveForward={moveForward} />;
+        return <Input defaultTodoList={todoInfo.list} moveForward={buildTodoListAndMoveForwardToCard} />;
+      case Steps.Card:
+        return <Card
+          todoInfo={todoInfo}
+          userInfo={userInfo}
+          onSaveButtonClick={buildTodoListAndFinish}
+          onBackButtonClick={backToInput}
+          mode={cardMode}
+        />;
       default:
         return <Welcome moveForward={moveForward} />;
     }

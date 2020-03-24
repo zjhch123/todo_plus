@@ -12,4 +12,7 @@
     background: white;
     color: black;
   }
+  &:focus {
+    outline: 1px currentColor dashed;
+  }
 }

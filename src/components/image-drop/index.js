@@ -34,6 +34,7 @@ export function ImageDrop({
             style={{
               transform: getTransform(index),
             }}
+            role="button"
             onClick={() => setCurrentIndex(currentIndex === index ? -1 : index)}
           >
             <img src={path} alt="image_drop_item" />
