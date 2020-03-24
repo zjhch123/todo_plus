@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import _ from 'underscore';
 import { useElementHeight } from '../../hooks/use-element-height';
+import { useCountDown } from '../../hooks/use-count-down';
 import { ImageDrop } from '../../components/image-drop';
 import { Button } from '../../components/button';
 
@@ -19,6 +20,7 @@ export function Input({
   const [focusInputIndex, setFocusInputIndex] = useState(-1);
   const [todoList, setTodoList] = useState(defaultTodoList === null ? ['', '', ''] : defaultTodoList);
   const [displaySubmit, setDisplaySubmit] = useState(false);
+  const countDown = useCountDown(new Date(2020, 0, 1).getTime());
 
   const goToStage2 = () => setStage(2);
 
@@ -42,8 +44,8 @@ export function Input({
   );
 
   useEffect(() => {
-    setDisplaySubmit(_.some(todoList, (item) => item.length > 0));
-  }, [todoList]);
+    setDisplaySubmit(stage === 2 && _.some(todoList, (item) => item.length > 0));
+  }, [todoList, stage]);
 
   return (
     <div className="p-input">
@@ -55,10 +57,9 @@ export function Input({
             <p>&nbsp;</p>
             <p>你好，</p>
             <p className="color-green">纸叠的世界</p>
-            <p><span className="english-bold color-green">2020</span>&nbsp;年已经过去了</p>
-            <p><span className="english-bold color-green">101,738,722</span>&nbsp;秒</p>
-            <p>我们终于等来第&nbsp;<span className="english-bold color-green">1</span>&nbsp;位</p>
-            <p>和我们打赌的人</p>
+            <p><span className="english-bold color-green">2020&nbsp;</span>年已经过去了</p>
+            <p><span className="consolas-bold color-green">{parseInt(countDown / 1000).toLocaleString('en-us')}&nbsp;</span>秒</p>
+            <p>我们终于等来第<span className="english-bold color-green">&nbsp;1&nbsp;</span>位和我们打赌的人</p>
           </div>
         </div>
         <div className="m-input">

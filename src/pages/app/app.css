@@ -41,11 +41,12 @@ input { outline: none; border: 0; }
 input:-moz-placeholder { color: #aaa; }
 *:not(input) { -webkit-user-select: none; }
 html { height: 100vh; width: 100%; overflow: hidden; }
-body { background-color: black; height: 100vh; width:7.5rem; overflow: hidden; margin: auto; }
+body { background-color: black; height: 100vh; width:7.5rem; font-size: 16px; overflow: hidden; margin: auto; }
 #root { position: relative; z-index: 2; }
 img { -webkit-touch-callout: none; }
 .english { font-family: 'nexa-light', sans-serif ; font-weight: inherit; }
 .english-bold { font-family: 'nexa-bold', sans-serif; }
+.consolas-bold { font-family: Consolas; font-weight: bold; }
 .m-video {
   position: absolute;
   left: 50%;
