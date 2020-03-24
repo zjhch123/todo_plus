@@ -8,7 +8,7 @@ import { Steps, CardMode } from '../../constants';
 import './app.css';
 
 export function App() {
-  const [step, setStep] = useState(Steps.Input);
+  const [step, setStep] = useState(Steps.Welcome);
 
   const [userInfo] = useState({
     openid: '123456',
