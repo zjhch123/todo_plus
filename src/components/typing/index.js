@@ -63,6 +63,7 @@ export function Typing({
         key={currentIndex}
         style={{
           fontSize: `${fontSize}rem`,
+          height: `${fontSize * 1.41}rem`,
           width: `${contentWidth}rem`,
           animationDelay: `${selectedDelayTimeout}s`,
         }}
@@ -89,7 +90,7 @@ Typing.propTypes = {
 Typing.defaultProps = {
   fontSize: 0.6,
   className: '',
-  contents: [],
+  contents: [' '],
   config: {
     fadeIn: 1000,
     display: 3000,

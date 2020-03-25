@@ -70,7 +70,7 @@ export function Input({
             <p>你好，</p>
             <p className="color-green">纸叠的世界</p>
             <p><span className="english-bold color-green">2020&nbsp;</span>年已经过去了</p>
-            <p><span className="consolas-bold color-green">{parseInt(countDown / 1000).toLocaleString('en-us')}&nbsp;</span>秒</p>
+            <p><span className="roboto-bold color-green">{parseInt(countDown / 1000).toLocaleString('en-us')}&nbsp;</span>秒</p>
             <p>我们终于等来第<span className="english-bold color-green">&nbsp;1&nbsp;</span>位和我们打赌的人</p>
           </div>
         </div>
