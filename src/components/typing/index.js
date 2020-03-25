@@ -56,7 +56,7 @@ export function Typing({
     className="caret" />
   );
 
-  return content ? (
+  return (
     <div className={classnames('c-typing', className)}>
       <div
         className="content"
@@ -68,11 +68,11 @@ export function Typing({
           animationDelay: `${selectedDelayTimeout}s`,
         }}
       >
-        {renderContent()}
-        {renderCaret()}
+        {content && renderContent()}
+        {content && renderCaret()}
       </div>
     </div>
-  ) : null;
+  );
 }
 
 Typing.propTypes = {

@@ -25,6 +25,7 @@ export function UserCard({
 
   const inputElement = useRef(null);
   const triggerUpload = () => inputElement && inputElement.current.click();
+  const todoCount = _.filter(todoList, (item) => item.trim().length > 0).length;
 
   return (
     <div className={classnames('c-card', className)}>
@@ -52,7 +53,7 @@ export function UserCard({
         <p className="u-title">
           <span className="english-bold">2020&nbsp;</span>
           年我要做
-          <span className="english-bold">&nbsp;{todoList.length}&nbsp;</span>
+          <span className="english-bold">&nbsp;{todoCount}&nbsp;</span>
           个新尝试
         </p>
         <div className="u-todo">

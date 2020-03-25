@@ -52,6 +52,15 @@ img { -webkit-touch-callout: none; }
 .english { font-family: 'nexa-light', sans-serif ; font-weight: inherit; }
 .english-bold { font-family: 'nexa-bold', sans-serif; }
 .roboto-bold { font-family: 'roboto-bold'; font-weight: bold; }
+.preload {
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+  z-index: 1;
+  pointer-events: none;
+  font-size: 0;
+}
 .m-video {
   position: absolute;
   left: 50%;

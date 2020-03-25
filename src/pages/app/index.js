@@ -49,7 +49,11 @@ export function App() {
     setCardMode(CardMode.Show);
   };
 
-  const backToInput = () => {
+  const backToInput = (data) => {
+    setTodoInfo({
+      ...todoInfo,
+      image: data,
+    });
     setStep(Steps.Input);
     setCardMode(CardMode.Edit);
   };
@@ -78,6 +82,11 @@ export function App() {
   return (
     <div>
       { renderStep() }
+      <span className="english preload">1</span>
+      <span className="english-bold preload">1</span>
+      <span className="roboto-bold preload">1</span>
+      <img src={require('../../asset/images/filter.png')} alt="preload" className="preload" />
+      <img src={require('../../asset/images/bitmap.png')} alt="preload" className="preload" />
     </div>
   );
 }

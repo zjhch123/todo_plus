@@ -51,7 +51,7 @@ export function Card({
       </div>
       <div className="m-row">
         {
-          mode !== CardMode.Share && (<Button className="u-btn" onClick={onBackButtonClick}>修改</Button>)
+          mode !== CardMode.Share && (<Button className="u-btn" onClick={() => onBackButtonClick(image)}>修改</Button>)
         }
         {
           mode === CardMode.Edit && (<Button className="u-btn" onClick={() => onSaveButtonClick(image)}>完成</Button>)

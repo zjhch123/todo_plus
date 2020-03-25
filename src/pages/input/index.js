@@ -51,10 +51,10 @@ export function Input({
 
   useLayoutEffect(() => {
     const timeoutId = setTimeout(() => {
-      if (todoList.length === 3 && _.every(todoList, (item) => item.trim().length > 0)) {
+      if (_.some(todoList, (item) => item.trim().length > 0)) {
         setStage(2);
       }
-    }, 200);
+    }, 600);
 
     return () => clearTimeout(timeoutId);
   }, [todoList]);

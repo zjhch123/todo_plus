@@ -32,6 +32,8 @@
     padding-top: .32rem;
     box-sizing: border-box;
     transition: opacity .6s;
+    animation: inputFadeInLight .6s .4s;
+    animation-fill-mode: both;
     .m-content {
       font-size: .67rem;
       color: white;
@@ -47,6 +49,8 @@
   }
   .m-input {
     padding-top: .5rem;
+    animation: inputFadeInLight .6s .6s;
+    animation-fill-mode: both;
     .u-section {
       border-radius: .08rem;
       text-align: left;

@@ -7,6 +7,16 @@
       transform: translateY(.2rem);
     }
   }
+  @keyframes cardFadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-.2rem);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
   width: 100%;
   height: 100vh;
   background: #39363f;
@@ -53,6 +63,8 @@
   .m-card {
     position: relative;
     z-index: 2;
+    animation: cardFadeIn .6s .6s;
+    animation-fill-mode: both;
   }
   .m-row {
     position: relative;
