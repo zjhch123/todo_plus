@@ -56,22 +56,23 @@ export function Typing({
     className="caret" />
   );
 
-  return content ? (
+  return (
     <div className={classnames('c-typing', className)}>
       <div
         className="content"
         key={currentIndex}
         style={{
           fontSize: `${fontSize}rem`,
+          height: `${fontSize * 1.41}rem`,
           width: `${contentWidth}rem`,
           animationDelay: `${selectedDelayTimeout}s`,
         }}
       >
-        {renderContent()}
-        {renderCaret()}
+        {content && renderContent()}
+        {content && renderCaret()}
       </div>
     </div>
-  ) : null;
+  );
 }
 
 Typing.propTypes = {
@@ -89,7 +90,7 @@ Typing.propTypes = {
 Typing.defaultProps = {
   fontSize: 0.6,
   className: '',
-  contents: [],
+  contents: [' '],
   config: {
     fadeIn: 1000,
     display: 3000,

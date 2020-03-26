@@ -4,8 +4,8 @@ import axios from 'axios';
 export function useAPI(payloadGenerator) {
   const [status, setStatus] = useState({
     response: null,
-    isLoading: false,
-    isError: false,
+    isLoading: null,
+    isError: null,
   });
   const [cancelToken, setCancelToken] = useState(null);
 
@@ -40,6 +40,7 @@ export function useAPI(payloadGenerator) {
           isError: false,
           response: response.data,
         });
+        return response.data;
       }).catch(e => {
         if (axios.isCancel(e)) {
           return;

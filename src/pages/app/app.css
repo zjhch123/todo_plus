@@ -8,6 +8,11 @@
   font-display: swap;
   src: url('../../asset/fonts/nexa-bold.woff') format('woff');
 }
+@font-face {
+  font-family: 'roboto-bold';
+  font-display: swap;
+  src: url('../../asset/fonts/roboto-bold.ttf') format('truetype');
+}
 body, dl, dd, ul, ol, h1, h2, h3, h4, h5, h6, p, form, input, textarea, button, th, td { margin: 0; padding: 0; }
 img, iframe { border: 0 none; }
 table { border-collapse: collapse; border-spacing: 0; table-layout: fixed; }
@@ -46,7 +51,16 @@ body { background-color: black; height: 100vh; width:7.5rem; font-size: 16px; ov
 img { -webkit-touch-callout: none; }
 .english { font-family: 'nexa-light', sans-serif ; font-weight: inherit; }
 .english-bold { font-family: 'nexa-bold', sans-serif; }
-.consolas-bold { font-family: Consolas; font-weight: bold; }
+.roboto-bold { font-family: 'roboto-bold'; font-weight: bold; }
+.preload {
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+  z-index: 1;
+  pointer-events: none;
+  font-size: 0;
+}
 .m-video {
   position: absolute;
   left: 50%;
@@ -56,4 +70,17 @@ img { -webkit-touch-callout: none; }
   transform: translate(-50%, -50%);
   z-index: 1;
   pointer-events: none;
+  opacity: 0;
+}
+.m-video.f-show {
+  opacity: 1;
+}
+.loading {
+  position: absolute;
+  z-index: 2;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #000;
 }

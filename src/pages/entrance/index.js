@@ -12,6 +12,8 @@ import './index.scss';
 
 export function Entrance({
   moveForward,
+  moveToView,
+  todoInfo,
 }) {
   const [typingKey, setTypingKey] = useState(1);
   const updateTypingKey = debounce(() => setTypingKey(typingKey + 1));
@@ -24,11 +26,21 @@ export function Entrance({
     />
   );
 
-  const goNext = () => {
+  const stopMedia = () => {
     const mediaElement = document.getElementById(MediaElementId);
     mediaElement.pause();
     mediaElement.currentTime = 0;
+    document.getElementById(MediaElementId).classList.remove('f-show');
+  };
+
+  const goNext = () => {
+    stopMedia();
     moveForward();
+  };
+
+  const goView = () => {
+    stopMedia();
+    moveToView();
   };
 
   useEffect(() => {
@@ -60,12 +72,23 @@ export function Entrance({
             contents={TodoContents}
           />
         </div>
-        <Button
-          className="u-btn"
-          onClick={goNext}
-        >
-          填写我的&nbsp;<span className="english">2020</span>&nbsp;赌约
-        </Button>
+        {
+          todoInfo.list === null ? (
+            <Button
+              className="u-btn"
+              onClick={goNext}
+            >
+              填写我的&nbsp;<span className="english">2020</span>&nbsp;赌约
+            </Button>
+          ) : (
+            <Button
+              className="u-btn"
+              onClick={goView}
+            >
+                查看我的赌约
+            </Button>
+          )
+        }
       </div>
     </div>
   );
@@ -73,4 +96,14 @@ export function Entrance({
 
 Entrance.propTypes = {
   moveForward: PropTypes.func.isRequired,
+  moveToView: PropTypes.func.isRequired,
+  todoInfo: PropTypes.shape({
+    image: PropTypes.shape({
+      file: PropTypes.object,
+      url: PropTypes.string,
+    }),
+    createdAt: PropTypes.number,
+    list: PropTypes.arrayOf(PropTypes.string),
+    visitCount: PropTypes.number,
+  }).isRequired,
 };

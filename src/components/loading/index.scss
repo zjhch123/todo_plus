@@ -1,0 +1,52 @@
+.c-loading {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 99;
+
+  pointer-events: none;
+  opacity: 0;
+  background-color: rgba(0,0,0,.8);
+  @keyframes scaleSizeSmallToBig {
+    0%, 100% {
+      transform: scale(.8);
+      opacity: 0.3;
+    }
+    50% {
+      transform: scale(1.5);
+      opacity: 0.8;
+    }
+  }
+  @keyframes scaleSizeBigToSmall {
+    0%, 100% {
+      transform: scale(1.5);
+      opacity: 0.8;
+    }
+    50% {
+      transform: scale(.8);
+      opacity: 0.5;
+    }
+  }
+  &.f-show {
+    pointer-events: auto;
+    opacity: 1;
+  }
+  .small,
+  .big {
+    position: absolute;
+    width: .8rem;
+    height: .8rem;
+    top: 50%;
+    left: 50%;
+    margin-top: -.4rem;
+    margin-left: -.4rem;
+  }
+  .big {
+    animation: scaleSizeSmallToBig 1.5s linear infinite reverse;
+  }
+  .small {
+    animation: scaleSizeBigToSmall 1.5s linear infinite alternate-reverse;
+  }
+}
