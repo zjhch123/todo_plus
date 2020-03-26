@@ -5,6 +5,7 @@ import { useAPI } from '../../hooks/use-api';
 import { postTodo } from '../../api';
 import { UserCard } from '../../components/user-card';
 import { Button } from '../../components/button';
+import { Loading } from '../../components/loading';
 import { CardMode } from '../../constants';
 import { compressImage } from '../../utils/compress-image';
 
@@ -20,7 +21,7 @@ export function Card({
 }) {
   const [image, setImage] = useState(mode === CardMode.Share ? cardInfo.todoInfo.image : todoInfo.image);
   const [showShareMask, setShowShareMask] = useState(false);
-  const [, execute] = useAPI(postTodo);
+  const [, execute, isLoading] = useAPI(postTodo);
 
   const onImageUpload = async (e) => {
     const file = e.target.files[0];
@@ -46,6 +47,7 @@ export function Card({
 
   return (
     <div className='p-upload'>
+      <Loading show={isLoading} />
       {
         showShareMask && (
           <div className="u-share" onClick={() => setShowShareMask(false)}>

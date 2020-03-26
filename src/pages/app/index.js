@@ -4,6 +4,7 @@ import { Entrance } from '../entrance';
 import { Input } from '../input';
 import { Card } from '../card';
 import { Steps, CardMode } from '../../constants';
+import { Loading } from '../../components/loading';
 import { useUserInfo } from '../../hooks/use-user-info';
 import { useTodoInfo } from '../../hooks/use-todo-info';
 import { useCardInfo } from '../../hooks/use-card-info';
@@ -15,7 +16,7 @@ export function App() {
   const [step, setStep] = useState(null);
   const [userInfo, isUserInfoLoading] = useUserInfo();
   const [todoInfo, setTodoInfo, isTodoInfoLoading] = useTodoInfo();
-  const [cardInfo] = useCardInfo();
+  const [cardInfo, isCardInfoLoading] = useCardInfo();
   const [todoCount] = useTodoCount();
 
   const [cardMode, setCardMode] = useState(CardMode.Edit);
@@ -73,24 +74,22 @@ export function App() {
           mode={cardMode}
         />;
       default:
-        return <div className="loading"></div>;
+        return;
     }
   };
 
   useEffect(() => {
     const id = new URL(document.location).searchParams.get('id');
 
-    if (!id && isUserInfoLoading === false && isTodoInfoLoading === false) {
-      setStep(Steps.Welcome);
+    if (isUserInfoLoading === false && isTodoInfoLoading === false) {
+      if (!id) {
+        setStep(Steps.Welcome);
+      } else if (isCardInfoLoading === false) {
+        setCardMode(CardMode.Share);
+        setStep(Steps.Card);
+      }
     }
-  }, [isUserInfoLoading, isTodoInfoLoading]);
-
-  useEffect(() => {
-    if (cardInfo !== null && isUserInfoLoading === false && isTodoInfoLoading === false) {
-      setCardMode(CardMode.Share);
-      setStep(Steps.Card);
-    }
-  }, [cardInfo, isUserInfoLoading, isTodoInfoLoading]);
+  }, [cardInfo, isUserInfoLoading, isTodoInfoLoading, isCardInfoLoading]);
 
   useEffect(() => {
     if (step !== Steps.Card) {
@@ -112,7 +111,7 @@ export function App() {
         break;
       case CardMode.Show:
       case CardMode.Share: {
-        const id = CardMode.Show ? userInfo._id : cardInfo.userInfo._id;
+        const id = cardMode === CardMode.Show ? userInfo._id : cardInfo.userInfo._id;
         const origin = new URL(window.location.origin);
         origin.searchParams.append('id', id);
 
@@ -130,6 +129,7 @@ export function App() {
 
   return (
     <div>
+      <Loading show={isTodoInfoLoading || isUserInfoLoading} />
       { renderStep() }
       <span className="english preload">1</span>
       <span className="english-bold preload">1</span>
