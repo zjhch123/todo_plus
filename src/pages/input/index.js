@@ -13,7 +13,9 @@ import './index.scss';
 
 export function Input({
   moveForward,
+  todoCount,
   defaultTodoList,
+  userInfo,
 }) {
   const [stage, setStage] = useState(1);
   const [introElementRef, , getIntroElementHeight] = useElementHeight();
@@ -22,7 +24,7 @@ export function Input({
   const [displaySubmit, setDisplaySubmit] = useState(false);
   const countDown = useCountDown(new Date(2020, 0, 1).getTime());
 
-  const todoCount = _.filter(todoList, (item) => item.trim().length > 0).length;
+  const todoItemCount = _.filter(todoList, (item) => item.trim().length > 0).length;
 
   const goToStage2 = () => setStage(2);
 
@@ -51,13 +53,13 @@ export function Input({
 
   useLayoutEffect(() => {
     const timeoutId = setTimeout(() => {
-      if (_.some(todoList, (item) => item.trim().length > 0)) {
+      if (stage === 1 && _.some(todoList, (item) => item.trim().length > 0)) {
         setStage(2);
       }
     }, 600);
 
     return () => clearTimeout(timeoutId);
-  }, [todoList]);
+  }, [todoList, stage]);
 
   return (
     <div className="p-input">
@@ -68,10 +70,10 @@ export function Input({
           <div className="m-content">
             <p>&nbsp;</p>
             <p>你好，</p>
-            <p className="color-green">纸叠的世界</p>
+            <p className="color-green">{userInfo.nickname}</p>
             <p><span className="english-bold color-green">2020&nbsp;</span>年已经过去了</p>
             <p><span className="roboto-bold color-green">{parseInt(countDown / 1000).toLocaleString('en-us')}&nbsp;</span>秒</p>
-            <p>我们终于等来第<span className="english-bold color-green">&nbsp;1&nbsp;</span>位和我们打赌的人</p>
+            <p>我们终于等来第<span className="english-bold color-green">&nbsp;{todoCount + 1}&nbsp;</span>位和我们打赌的人</p>
           </div>
         </div>
         <div className="m-input">
@@ -85,7 +87,7 @@ export function Input({
               <span className="english-bold">2020&nbsp;</span>
               年我要做
               <span className="english-bold">
-                &nbsp;{todoCount === 0 ? 'n' : todoCount}&nbsp;
+                &nbsp;{todoCount === 0 ? 'n' : todoItemCount}&nbsp;
               </span>
               个新尝试</span>
             <div className="input-list">
@@ -111,8 +113,11 @@ export function Input({
 Input.propTypes = {
   defaultTodoList: PropTypes.arrayOf(PropTypes.string),
   moveForward: PropTypes.func.isRequired,
+  todoCount: PropTypes.number,
+  userInfo: PropTypes.object.isRequired,
 };
 
 Input.defaultProps = {
   defaultTodoList: null,
+  todoCount: 0,
 };

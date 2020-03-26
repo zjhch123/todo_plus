@@ -14,5 +14,11 @@ const media = IsAndroid
 
 document.getElementById(MediaElementId).setAttribute('src', media);
 
+window.wxShare.setShareData({
+  title: '我们打个赌，一年为期',
+  desc: '敢不敢来打赌',
+  link: window.location.href,
+});
+
 ReactDOM.render(<App />, window.document.getElementById('root'));
 serviceWorker.unregister();

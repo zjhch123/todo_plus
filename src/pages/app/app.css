@@ -71,3 +71,12 @@ img { -webkit-touch-callout: none; }
   z-index: 1;
   pointer-events: none;
 }
+.loading {
+  position: absolute;
+  z-index: 2;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #000;
+}
