@@ -83,6 +83,13 @@
       &.f-touched {
         background: white;
         color: black;
+        border: 1px solid black;
+      }
+      &.f-large {
+        width: 3.8rem;
+        height: .45rem;
+        line-height: .45rem;
+        font-size: .32rem;
       }
     }
   }

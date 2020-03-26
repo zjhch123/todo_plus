@@ -15,7 +15,7 @@ module.exports = {
       list: ['happy','321421','dasf'],
       image: {
         file: null,
-        url: '/api/static/1585211620297.jpg',
+        url: 'https://image.hduzplus.xyz/image/1585217459845.png',
       },
       visitCount: 0,
       openid: '123456',
@@ -25,5 +25,26 @@ module.exports = {
   '/api/todo/count': {
     code: 200,
     data: 20,
+  },
+  '/api/card/123456': {
+    code: 200,
+    data: {
+      userInfo: {
+        nickname: 'zjhch123',
+        _id: '123456',
+        headimgurl: 'http://thirdwx.qlogo.cn/mmopen/vi_32/DYAIOgq83erk2mzPM9LqTic41SAgReFn7bOf576yqqkU2ugqcz17fQkzdNWbo42W4XcDDYHkfsjH8cIHCibITAYg/132',
+        openid: '123456',
+      },
+      todoInfo: {
+        createdAt: 1585211481541,
+        list: ['happy','321421','dasf'],
+        image: {
+          file: null,
+          url: 'https://image.hduzplus.xyz/image/1585217459845.png',
+        },
+        visitCount: 0,
+        _id: 'otRzYSqeekw3PA8I',
+      },
+    },
   },
 };

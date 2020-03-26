@@ -41,3 +41,7 @@ export const CardMode = Object.freeze({
 export const LoginURI = process.env.NODE_ENV === 'development'
   ? 'https://static.hduzplus.xyz/wxAuth?postdata_uri=http%3A%2F%2F139.129.132.196%3A3333%2Fapi%2Fuser&redirect_uri=http%3A%2F%2F139.129.132.196%3A3333%2Fapi%2Fauth&error_uri=http://139.129.132.196:3333?error'
   : 'https://static.hduzplus.xyz/wxAuth?postdata_uri=https%3A%2F%2Ftodo.hduzplus.xyz%2Fapi%2Fuser&redirect_uri=https%3A%2F%2Ftodo.hduzplus.xyz%2Fapi%2Fauth&error_uri=https%3A%2F%2Ftodo.hduzplus.xyz%3FauthError';
+
+export const ServerURL = process.env.NODE_ENV === 'development'
+  ? 'http://127.0.0.1:3000'
+  : 'https://todo.hduzplus.xyz';

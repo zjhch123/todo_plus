@@ -111,12 +111,12 @@ export function App() {
         break;
       case CardMode.Show:
       case CardMode.Share: {
-        const id = cardMode === CardMode.Show ? userInfo._id : cardInfo.userInfo._id;
+        const { _id: id, nickname } = cardMode === CardMode.Show ? userInfo : cardInfo.userInfo;
         const origin = new URL(window.location.origin);
         origin.searchParams.append('id', id);
 
         window.wxShare.setShareData({
-          title: `快来看看 ${userInfo.nickname} 的赌约`,
+          title: `快来看看 ${nickname} 的赌约`,
           desc: '速看!',
           link: origin.toString(),
         });

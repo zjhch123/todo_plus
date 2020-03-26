@@ -6,7 +6,7 @@ import { postTodo } from '../../api';
 import { UserCard } from '../../components/user-card';
 import { Button } from '../../components/button';
 import { Loading } from '../../components/loading';
-import { CardMode } from '../../constants';
+import { CardMode, ServerURL } from '../../constants';
 import { compressImage } from '../../utils/compress-image';
 
 import './index.scss';
@@ -77,6 +77,9 @@ export function Card({
         }
         {
           mode === CardMode.Show && (<Button className="u-btn" onClick={() => setShowShareMask(true)}>分享</Button>)
+        }
+        {
+          mode === CardMode.Share && (<Button className="u-btn f-large" onClick={() => { window.location.href = ServerURL; }}>我也想填写赌约</Button>)
         }
       </div>
     </div>

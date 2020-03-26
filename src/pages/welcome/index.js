@@ -15,6 +15,7 @@ export function Welcome({
 
   const playMedia = (pre = false) => {
     // #HACK
+    document.getElementById(MediaElementId).classList.add('f-show');
     document.getElementById(MediaElementId).play();
     pre && document.getElementById(MediaElementId).pause();
   };

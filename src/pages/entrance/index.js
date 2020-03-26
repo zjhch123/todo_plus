@@ -30,6 +30,7 @@ export function Entrance({
     const mediaElement = document.getElementById(MediaElementId);
     mediaElement.pause();
     mediaElement.currentTime = 0;
+    document.getElementById(MediaElementId).classList.remove('f-show');
   };
 
   const goNext = () => {
