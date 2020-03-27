@@ -38,8 +38,8 @@ jobs:
         password: ${{ secrets.PASSWORD }}
         port: ${{ secrets.PORT }}
         script: |
-          mv /root/dist.tar.gz /var/www/Todo
-          cd /var/www/Todo
+          mv /root/dist.tar.gz ${{ secrets.DEPLOY_FOLDER }}
+          cd ${{ secrets.DEPLOY_FOLDER }}
           find . \! -name '*.tar.gz' -delete
           tar -zxvf dist.tar.gz
           rm -rf dist.tar.gz
