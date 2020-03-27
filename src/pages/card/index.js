@@ -19,7 +19,10 @@ export function Card({
   onBackButtonClick,
   mode,
 }) {
-  const [image, setImage] = useState(mode === CardMode.Share ? cardInfo.todoInfo.image : todoInfo.image);
+  const cardUserInfo = mode === CardMode.Share ? cardInfo.userInfo : userInfo;
+  const cardTodoInfo = mode === CardMode.Share ? cardInfo.todoInfo : todoInfo;
+  
+  const [image, setImage] = useState(cardTodoInfo.image);
   const [showShareMask, setShowShareMask] = useState(false);
   const [, execute, isLoading] = useAPI(postTodo);
 
@@ -39,15 +42,18 @@ export function Card({
     formData.append('list', JSON.stringify(todoInfo.list));
     formData.append('createdAt', todoInfo.createdAt);
     formData.append('image', image.file);
-    execute(formData).then((res) => {
-      console.log(res);
+    execute(formData).then(({ code }) => {
+      if (code === 200) {
+        onSaveButtonClick(image);
+      }
     });
-    onSaveButtonClick(image);
   };
+
+  const cardImage = image.url ? image.url : require('../../asset/images/bitmap.png');
 
   return (
     <div className='p-upload'>
-      <Loading show={isLoading} />
+      <Loading show={isLoading === true} />
       {
         showShareMask && (
           <div className="u-share" onClick={() => setShowShareMask(false)}>
@@ -56,14 +62,14 @@ export function Card({
         )
       }
       <div className="u-bg">
-        <img src={image.url ? image.url : require('../../asset/images/bitmap.png')} alt="upload_bg" />
+        <img src={cardImage} alt="upload_bg" />
       </div>
       <div className="m-card">
         <UserCard
-          imageURL={image.url ? image.url : require('../../asset/images/bitmap.png')}
-          userInfo={mode === CardMode.Share ? cardInfo.userInfo : userInfo}
+          imageURL={cardImage}
+          userInfo={cardUserInfo}
           onImageUpload={onImageUpload}
-          todoInfo={mode === CardMode.Share ? cardInfo.todoInfo : todoInfo}
+          todoInfo={cardTodoInfo}
           canUpload={mode === CardMode.Edit}
           showVisitCount={mode === CardMode.Share}
         />
