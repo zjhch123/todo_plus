@@ -20,4 +20,4 @@ jobs:
     - name: Build
       run: yarn build
     - name: Zip
-      run: cd build && zip ./* 
+      run: tar -czvf dist.tar.gz ./build/
