@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import _ from 'underscore';
 import { useAPI } from '../../hooks/use-api';
 import { postTodo } from '../../api';
+import { renderError } from '../../components/floating-banner';
 import { UserCard } from '../../components/user-card';
 import { Button } from '../../components/button';
 import { Loading } from '../../components/loading';
@@ -45,6 +46,8 @@ export function Card({
     execute(formData).then(({ code }) => {
       if (code === 200) {
         onSaveButtonClick(image);
+      } else {
+        renderError('保存失败, 可能是服务器开小差了..');
       }
     });
   };

@@ -10,6 +10,7 @@ import { useTodoInfo } from '../../hooks/use-todo-info';
 import { useCardInfo } from '../../hooks/use-card-info';
 import { useTodoCount } from '../../hooks/use-todo-count';
 import { useWechatShare } from '../../hooks/use-wechat-share';
+import { useAuthError } from '../../hooks/use-auth-error';
 
 import './app.css';
 
@@ -22,6 +23,7 @@ export function App() {
   const [cardMode, setCardMode] = useState(CardMode.Edit);
 
   useWechatShare({ step, cardMode, userInfo, cardInfo });
+  useAuthError();
 
   const moveForward = () => {
     setStep(step + 1);
