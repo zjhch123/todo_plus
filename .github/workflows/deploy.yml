@@ -30,3 +30,19 @@ jobs:
         port: ${{ secrets.PORT }}
         source: "dist.tar.gz"
         target: "/root/"
+    - name: Deploy
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        password: ${{ secrets.PASSWORD }}
+        port: ${{ secrets.PORT }}
+        script: |
+          mv /root/dist.tar.gz /var/www/Todo
+          cd /var/www/Todo
+          find . \! -name '*.tar.gz' -delete
+          tar -zxvf dist.tar.gz
+          rm -rf dist.tar.gz
+          mv build/* ./
+          rm -rf build
+
