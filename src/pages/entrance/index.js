@@ -12,7 +12,7 @@ import './index.scss';
 
 export function Entrance({
   moveForward,
-  moveToView,
+  moveToCardShow,
   todoInfo,
 }) {
   const [typingKey, setTypingKey] = useState(1);
@@ -40,7 +40,7 @@ export function Entrance({
 
   const goView = () => {
     stopMedia();
-    moveToView();
+    moveToCardShow();
   };
 
   useEffect(() => {
@@ -96,7 +96,7 @@ export function Entrance({
 
 Entrance.propTypes = {
   moveForward: PropTypes.func.isRequired,
-  moveToView: PropTypes.func.isRequired,
+  moveToCardShow: PropTypes.func.isRequired,
   todoInfo: PropTypes.shape({
     image: PropTypes.shape({
       file: PropTypes.object,

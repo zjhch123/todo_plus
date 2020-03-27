@@ -9,6 +9,7 @@ import { useUserInfo } from '../../hooks/use-user-info';
 import { useTodoInfo } from '../../hooks/use-todo-info';
 import { useCardInfo } from '../../hooks/use-card-info';
 import { useTodoCount } from '../../hooks/use-todo-count';
+import { useWechatShare } from '../../hooks/use-wechat-share';
 
 import './app.css';
 
@@ -18,8 +19,9 @@ export function App() {
   const [todoInfo, setTodoInfo, isTodoInfoLoading] = useTodoInfo();
   const [cardInfo, isCardInfoLoading] = useCardInfo();
   const [todoCount] = useTodoCount();
-
   const [cardMode, setCardMode] = useState(CardMode.Edit);
+
+  useWechatShare({ step, cardMode, userInfo, cardInfo });
 
   const moveForward = () => {
     setStep(step + 1);
@@ -51,7 +53,7 @@ export function App() {
     setCardMode(CardMode.Edit);
   };
 
-  const moveToView = () => {
+  const moveToCardShow = () => {
     setCardMode(CardMode.Show);
     setStep(Steps.Card);
   };
@@ -61,7 +63,7 @@ export function App() {
       case Steps.Welcome:
         return <Welcome moveForward={moveForward} userInfo={userInfo} todoInfo={todoInfo} />;
       case Steps.Entrance:
-        return <Entrance moveForward={moveForward} todoInfo={todoInfo} moveToView={moveToView} />;
+        return <Entrance moveForward={moveForward} todoInfo={todoInfo} moveToCardShow={moveToCardShow} />;
       case Steps.Input:
         return <Input todoCount={todoCount} userInfo={userInfo} defaultTodoList={todoInfo.list} moveForward={buildTodoListAndMoveForwardToCard} />;
       case Steps.Card:
@@ -91,45 +93,9 @@ export function App() {
     }
   }, [cardInfo, isUserInfoLoading, isTodoInfoLoading, isCardInfoLoading]);
 
-  useEffect(() => {
-    if (step !== Steps.Card) {
-      window.wxShare.setShareData({
-        title: '我们打个赌，一年为期',
-        desc: '敢不敢来打赌',
-        link: window.location.href,
-      });
-      return;
-    }
-
-    switch (cardMode) {
-      case CardMode.Edit:
-        window.wxShare.setShareData({
-          title: '我们打个赌，一年为期',
-          desc: '敢不敢来打赌',
-          link: window.location.href,
-        });
-        break;
-      case CardMode.Show:
-      case CardMode.Share: {
-        const { _id: id, nickname } = cardMode === CardMode.Show ? userInfo : cardInfo.userInfo;
-        const origin = new URL(window.location.origin);
-        origin.searchParams.append('id', id);
-
-        window.wxShare.setShareData({
-          title: `快来看看 ${nickname} 的赌约`,
-          desc: '速看!',
-          link: origin.toString(),
-        });
-        break;
-      }
-      default: return;
-    }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [cardMode, step]);
-
   return (
     <div>
-      <Loading show={isTodoInfoLoading || isUserInfoLoading} />
+      <Loading show={!!isTodoInfoLoading || !!isUserInfoLoading} />
       { renderStep() }
       <span className="english preload">1</span>
       <span className="english-bold preload">1</span>

@@ -17,14 +17,8 @@ export function useTodoInfo() {
   
   useEffect(() => {
     execute().then(response => {
-      if (response.code === 200 && response.data.list !== null) {
-        setTodoInfo({
-          ...response.data,
-          image: {
-            ...response.data.image,
-            url: response.data.image.url ? response.data.image.url : require('../asset/images/bitmap.png'),
-          },
-        });
+      if (response.code === 200 && response.data !== null) {
+        setTodoInfo(response.data);
       }
     });
   }, [execute]);
