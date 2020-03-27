@@ -19,5 +19,14 @@ jobs:
       run: yarn
     - name: Build
       run: yarn build
-    - name: Zip
+    - name: Tar
       run: tar -czvf dist.tar.gz ./build/
+    - name: Scp
+      uses: appleboy/scp-action@master
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        password: ${{ secrets.PASSWORD }}
+        port: ${{ secrets.PORT }}
+        source: "dist.tar.gz"
+        target: "/root/"
